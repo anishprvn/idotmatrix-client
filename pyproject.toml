@@ -1,11 +1,9 @@
 [project]
-
 name = "iDotMatrix-Client"
 version = "0.0.1"
 description = "configure any iDotMatrix compatible 16x16 or 32x32 pixel display without chinese android apps."
 readme = "README.md"
 requires-python = ">=3.7"
-license = {file = "LICENSE"}
 keywords = ["idotmatrix", "bluetooth", "kandru"]
 authors = [
   {name = "Kalle Minkner", email = "info@kalleminkner.de" }

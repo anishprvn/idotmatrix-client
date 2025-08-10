@@ -3,6 +3,25 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Environments
+.env
+.venv
+web_config.json
+
+# SSL Certificates and Keys
+*.crt
+*.key
+*.pem
+server.crt
+server.key
+
+# Virtual Environment
+my-venv/
+
+# Configuration Files
+web_config.json
+server_config.json
+
 # C extensions
 *.so
 

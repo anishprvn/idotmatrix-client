@@ -1,0 +1,14 @@
+[Unit]
+Description=iDotMatrix Web Controller
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/blackstar/Projects/dotmatrix/python3-idotmatrix-client
+ExecStart=/home/blackstar/Projects/dotmatrix/python3-idotmatrix-client/my-venv/bin/python /home/blackstar/Projects/dotmatrix/python3-idotmatrix-client/web_server.py --no-browser --domain blackstar.ddns.net --email blackstar.deu@gmail.com --port 443
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

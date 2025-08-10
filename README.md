@@ -33,7 +33,7 @@
   * [Installation](#installation)
 * [Usage](#usage)
 * [Gif Compilations](#gif-compilations)
-* [GUI](#gui)
+* [User Interfaces](#user-interfaces)
 * [Troubleshooting](#troubleshooting)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
@@ -411,9 +411,54 @@ but you can create this manually with external tools like ImageMaick or https://
 and upload it to the iDotMatrix device as a single gif.
 
 
-## GUI
+## User Interfaces
 
-### Run Methods
+This project offers multiple ways to control your iDotMatrix displays:
+
+### 🌐 Web UI (Recommended for beginners)
+
+A modern, user-friendly web interface that works on any device with a browser.
+
+**Quick Start:**
+```bash
+# Linux/macOS
+./start_web_ui.sh
+
+# Windows
+start_web_ui.bat
+
+# Manual start
+python3 web_server.py
+```
+
+Then open your browser to `http://localhost:8080`
+
+**HTTPS Setup:**
+```bash
+# For localhost (HTTP)
+./start_web_ui.sh
+
+# For domain/IP with HTTPS
+./start_web_ui_ip.sh                    # Uses server_config.json
+./start_web_ui_ip.sh mydomain.com       # With custom domain
+./start_web_ui_ip.sh mydomain.com user@email.com  # With Let's Encrypt
+```
+
+**Features:**
+* 📱 **Cross-platform**: Works on phones, tablets, and computers
+* 🎨 **Visual controls**: Color pickers, sliders, and intuitive buttons
+* 🌐 **Remote access**: Control from anywhere on your network
+* 📊 **Real-time console**: See command output instantly
+* 🔧 **Complete control**: All device features accessible
+* 🔒 **HTTPS support**: Secure connections with Let's Encrypt
+
+For detailed instructions, see [WEB_UI_README.md](WEB_UI_README.md)
+
+### 🖥️ Desktop GUI (PyQt5)
+
+A comprehensive desktop application with advanced features.
+
+#### Run Methods
 You can run the GUI uncompiled with python, or you can build an executible with Pyinstaller.
 
 #### Method 1) Run via Python
@@ -429,7 +474,7 @@ You can run the GUI uncompiled with python, or you can build an executible with 
 * Right click ```build.ps1``` in Windows Explorer, and click "Run with PowerShell", and answer its prompt.
 * Open the new ```iDotMatrix GUI``` program on your desktop
 
-### Features
+#### Features
 * **Device Search**: *Scans for nearby devices, asks for name, adds to home screen.*
 * **Clock Style**: *Set the Clock Style and Color. Auto sync time.*
 * **Sync Time**: *Sync time to machine clock.*
@@ -443,11 +488,48 @@ You can run the GUI uncompiled with python, or you can build an executible with 
 * **Set Image**: *Pick an image from the file browser to set. Auto Image Processing.*
 * **Set GIF**: *Pick a GIF from the file browser to set. Auto GIF Processing is attempted but does not always work. Source material closer to 16x16 or 32x32 works best.*
 
-### Known Issues
+#### Known Issues
 * [ ] Commands somtimes fail to connect to the device. Usually rerunning the last command will work.
 * [ ] Screen Flip & Screen Freeze work inconsistantly and are not included with the GUI.
 
 *Found a GUI bug? Submitting a new GUI request? Tag [@TheBigWazz](https://github.com/thebigwazz)*
+
+### ⌨️ Command Line Interface
+
+For advanced users and automation. See the [Usage](#usage) section below for all available commands.
+
+### 🚀 Auto-Start Service
+
+Set up the web server to start automatically on system boot using systemd.
+
+#### Quick Setup:
+```bash
+# Install as system service
+sudo ./install_service.sh
+
+# Monitor the service
+./service_monitor.sh status    # Check status
+./service_monitor.sh logs      # View logs
+./service_monitor.sh live      # Live logs
+./service_monitor.sh restart   # Restart service
+```
+
+#### Configuration:
+Edit `server_config.json` to set your domain and email:
+```json
+{
+  "domain": "yourdomain.com",
+  "email": "your@email.com"
+}
+```
+
+#### Service Management:
+- **Status**: `sudo systemctl status idotmatrix-web`
+- **Start**: `sudo systemctl start idotmatrix-web`
+- **Stop**: `sudo systemctl stop idotmatrix-web`
+- **Restart**: `sudo systemctl restart idotmatrix-web`
+- **Disable auto-start**: `sudo systemctl disable idotmatrix-web`
+- **View logs**: `sudo journalctl -u idotmatrix-web -f`
 
 </br>
 
